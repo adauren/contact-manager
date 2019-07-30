@@ -1,11 +1,15 @@
 const express = require("express");
-const path = require("path");
+const connectDB = require("./config/db");
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("API Running");
-});
+connectDB();
+
+app.use(express.json({ extended: false }));
+
+app.use("/api/users", require("./routes/users"));
+app.use("/api/contacts", require("./routes/contacts"));
+app.use("/api/auth", require("./routes/auth"));
 
 const port = process.env.PORT || 5000;
 
