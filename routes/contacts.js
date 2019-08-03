@@ -45,7 +45,7 @@ router.post(
         user: req.user.id
       });
 
-      const contact = await new Contact.save();
+      const contact = await newContact.save();
 
       res.json(contact);
     } catch (err) {
